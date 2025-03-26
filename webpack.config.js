@@ -1,23 +1,23 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import UnoCSS from '@unocss/webpack'
 
-module.exports = {
+export default {
   mode: 'development',
   entry: './src/index.jsx',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
   devServer: {
     static: './dist',
    hot: true,
   },
   plugins: [
+    UnoCSS(),
     new HtmlWebpackPlugin({
       title: 'Development',
       template: './index.html'
     }),
   ],
+  optimization: {
+    realContentHash: true
+  },
   module: {
     rules: [
       {
